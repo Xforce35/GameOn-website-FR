@@ -34,10 +34,10 @@ img {
   margin: 3.5%;
 }
 .header-logo {
-    float: left;
+  float: left;
 }
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
   float: left;
@@ -67,9 +67,6 @@ img {
   display: none;
 }
 
-
-
-
 main {
   font-size: 130%;
   font-weight: bolder;
@@ -80,8 +77,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -359,6 +354,16 @@ input[data-error]::after {
   z-index: 99;
 }
 
+.text-sucess {
+  color: green;
+  font-size: 1rem;
+}
+
+.text-danger {
+  color: red;
+  font-size: 1rem;
+}
+
 /* Hide the items when the select box is closed: */
 .select-hide {
   display: none;
@@ -448,7 +453,6 @@ footer {
   margin: 0 20px;
 }
 
-
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -506,7 +510,9 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -519,32 +525,37 @@ footer {
   }
 }
 
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
     margin-top: -15px;
   }
-} 
+}
 
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
-    display: block;}
-  
-    .topnav a:hover {
-      background-color: #ffffff;
-      color: #ff0000;
-      border-radius: 15px;
-    }
+    display: block;
+  }
+
+  .topnav a:hover {
+    background-color: #ffffff;
+    color: #ff0000;
+    border-radius: 15px;
+  }
+}
 
 @media screen and (max-width: 320px) {
   .header-logo img {
     width: 150px;
   }
-
   .hero-headline {
     width: 100%;
     flex-wrap: wrap;
