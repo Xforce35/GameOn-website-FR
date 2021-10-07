@@ -62,35 +62,29 @@
           <span class="close"></span>
           <div class="modal-body">
             <!--Form-->
-            <form name="reserve" id="form" action="index.html" method="get" onsubmit="return validate();"
-            >
+            <form name="reserve" action="index.html" method="get" onsubmit="return validate();" >
             <!--Prenom-->
               <div class="formData">
                 <label>Prénom</label><br>
-                <input class="text-control" type="text" id="first" name="first" minlength="2"
-                />
+                <input class="text-control" type="text" id="first" name="first" minlength="2"/>
                 <p></p>
               </div>
               <!--Nom-->
               <div class="formData">
                 <label>Nom</label><br>
-                <input class="text-control" type="text" id="last" name="last" minlength="2"
-                /><p></p>
-                
+                <input class="text-control" type="text" id="last" name="last" minlength="2"/>
+                <p></p>
               </div>
               <!--Email-->
               <div class="formData">
                 <label>E-mail</label><br>
-                <input class="text-control" type="email" id="email" name="email"
-                />
+                <input class="text-control" type="email" id="email" name="email"/>
                 <p></p>
-              
               </div>
               <!--Date de Naissance-->
               <div class="formData">
                 <label>Date de naissance</label><br>
-                <input class="text-control" type="date" id="birthdate" name="birthdate"
-                /><br>
+                <input class="text-control" type="date" id="birthdate" name="birthdate"/><br>
               </div>
               <!--Nombre de Tournois-->
               <div class="formData">
@@ -104,45 +98,37 @@
                 />
                 <label class="checkbox-label" for="location1">
                   <span class="checkbox-icon"></span>
-                  New York</label
-                >
+                  New York</label>
                 <input class="checkbox-input" type="radio" id="location2" name="location" value="San Francisco"
                 />
                 <label class="checkbox-label" for="location2">
                   <span class="checkbox-icon"></span>
-                  San Francisco</label
-                >
+                  San Francisco</label>
                 <input class="checkbox-input" type="radio" id="location3" name="location" value="Seattle"
                 />
                 <label class="checkbox-label" for="location3">
-                  <span class="checkbox-icon"></span>
-                  Seattle</label
+                  <span class="checkbox-icon"></span>Seattle</label
                 >
                 <input class="checkbox-input" type="radio" id="location4" name="location" value="Chicago"
                 />
                 <label class="checkbox-label" for="location4">
                   <span class="checkbox-icon"></span>
-                  Chicago</label
-                >
+                  Chicago</label>
                 <input class="checkbox-input" type="radio" id="location5" name="location" value="Boston"
                 />
                 <label class="checkbox-label" for="location5">
                   <span class="checkbox-icon"></span>
-                  Boston</label
-                >
+                  Boston</label>
                 <input class="checkbox-input" type="radio" id="location6" name="location" value="Portland"
                 />
                 <label class="checkbox-label" for="location6">
                   <span class="checkbox-icon"></span>
-                  Portland</label
-                >
+                  Portland</label>
               </div>
 
-              <div
-                class="formData">
+              <div class="formData">
                 <input class="checkbox-input" type="checkbox" id="checkbox1"
-                  checked
-                />
+                  checked/>
                 <label class="checkbox2-label" for="checkbox1" required>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
@@ -161,7 +147,17 @@
           </div>
         </div>
       </div>
-    </main>
+      <!-- INCRIPTION CONFIRMÉ -->
+      <div class="container-confirmation-submit">
+        <div class="submitted-form">
+          <span class="close-modal-submit"></span>
+          <p>
+            Merci !
+            <br>
+            Votre réservation a été reçue.
+          </p>
+          <button id="close-btn-confirmation"> Fermer
+      </main>
     <!--PAGE D'ACCEUIL ""FOOTER""-->
     <footer>
       <p class="copyrights">
@@ -170,5 +166,6 @@
     </footer>
     <script src="modal.js"></script>
     <script src="validation_de_champs.js"></script>
+    <script src="inscription_confirme.js"></script>
   </body>
 </html>
