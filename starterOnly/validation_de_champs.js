@@ -1,5 +1,17 @@
 let form = document.querySelector('form');
 
+//Ecouter la soumission du formulaire
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (validFirst(form.first) && validLast(form.last) && validEmail(form.email) && validbirthdate(form.birthdate)) {
+        displayModalSubmit();
+        document.querySelector('form').reset();
+        };
+});
+
+
+
+
 //Ecouter la modification du prénom
 form.first.addEventListener('change', function() {
     validFirst(this)
@@ -15,22 +27,18 @@ form.email.addEventListener('change', function() {
     validEmail(this)
 });
 
-//Ecouter la soumission du formulaire
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (validFirst(form.first) && validLast(form.last) && validEmail(form.email)) {
-        displayModalSubmit();
-        document.querySelector('form').reset();
-        };
-});
 
+form.birthdate.addEventListener('change', function() {
+    validbirthdate(this)
+});
 
 // VALIDATION Du Prénom
 const validFirst = function(inputFirst) {
 
-//Récupération du Paragraphe
+    //Récupération du Paragraphe
     let error = inputFirst.nextElementSibling;
 
+    //On teste l'expréssion régulière
     if(/^[A-Za-z-]{2,20}$/.test(inputFirst.value)){
         error.innerHTML = " Prénom Accepté";
         error.classList.remove('text-danger');
@@ -53,6 +61,7 @@ const validLast = function(inputLast) {
     //Récupération du Paragraphe
         let error = inputLast.nextElementSibling;
     
+     //On teste l'expréssion régulière   
         if(/^[A-Za-z-]{2,20}$/.test(inputLast.value)){
             error.innerHTML = " Nom Accepté";
             error.classList.remove('text-danger');
@@ -92,3 +101,31 @@ const validEmail = function(inputEmail) {
         return false;
     }
 };
+
+// VALIDATION DE LA DATE D'ANNIVERSAIRE
+const validbirthdate = function(inputDate) {
+    let regExDate = new RegExp('^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$', 'g');
+    
+    //Récupération du Paragraphe
+    let error = inputDate.nextElementSibling;
+
+    //On teste l'expréssion régulière   
+    if(regExDate.test(date.value)) {
+        error.innerHTML = "Date de Naissance Accepté";
+        error.classList.remove('text-danger');
+        error.classList.add('text-sucess');
+        birthdate.style.border = 'solid green 0.19rem';
+        return true;
+    }
+    else {
+        error.innerHTML = "Veuillez saisir une date valide";
+        error.classList.remove('text-sucess');
+        error.classList.add('text-danger');
+        birthdate.style.border = 'solid red 0.19rem';
+        return false;
+    }
+};
+
+
+// VALIDATION DU NOMBRE DE TOURNOI PARTICIPÉ
+
