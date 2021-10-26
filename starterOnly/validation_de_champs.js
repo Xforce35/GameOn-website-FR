@@ -3,14 +3,11 @@ let form = document.querySelector('form');
 //Ecouter la soumission du formulaire
 form.addEventListener('submit', function(e) {
     e.preventDefault();
-    if (validFirst(form.first) && validLast(form.last) && validEmail(form.email) && validbirthdate(form.birthdate)) {
+    if (validFirst(form.first) && validLast(form.last) && validEmail(form.email) && validBirthdate(form.birthdate)) {
         displayModalSubmit();
         document.querySelector('form').reset();
         };
 });
-
-
-
 
 //Ecouter la modification du prénom
 form.first.addEventListener('change', function() {
@@ -27,9 +24,14 @@ form.email.addEventListener('change', function() {
     validEmail(this)
 });
 
-
+//Ecouter la modification de la Date de Naissance
 form.birthdate.addEventListener('change', function() {
-    validbirthdate(this)
+    validBirthdate(this)
+});
+
+//Ecouter la modification du nombre de tournoi
+form.quantity.addEventListener('change', function() {
+    validQuantity(this)
 });
 
 // VALIDATION Du Prénom
@@ -103,29 +105,48 @@ const validEmail = function(inputEmail) {
 };
 
 // VALIDATION DE LA DATE D'ANNIVERSAIRE
-const validbirthdate = function(inputDate) {
-    let regExDate = new RegExp('^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$', 'g');
-    
+const validBirthdate = function(inputDate) {
+    const dtDOB = new Date(inputDate.value);
+    const dtCurrent = new Date();
     //Récupération du Paragraphe
     let error = inputDate.nextElementSibling;
 
-    //On teste l'expréssion régulière   
-    if(regExDate.test(date.value)) {
-        error.innerHTML = "Date de Naissance Accepté";
-        error.classList.remove('text-danger');
-        error.classList.add('text-sucess');
-        birthdate.style.border = 'solid green 0.19rem';
-        return true;
-    }
-    else {
-        error.innerHTML = "Veuillez saisir une date valide";
+    //On teste la fonction   
+    if (dtCurrent.getFullYear() - dtDOB.getFullYear() < 18) {
+        error.innerHTML = "Vous devez avoir plus de 18 ans";
         error.classList.remove('text-sucess');
         error.classList.add('text-danger');
         birthdate.style.border = 'solid red 0.19rem';
         return false;
     }
+   if (dtCurrent.getFullYear() - dtDOB.getFullYear() > 18) {
+        error.innerHTML = " Date de naissance Valide";
+        error.classList.remove('text-danger');
+        error.classList.add('text-sucess');
+        email.style.border = 'solid green 0.19rem';
+        return true;
+    }
 };
-
 
 // VALIDATION DU NOMBRE DE TOURNOI PARTICIPÉ
 
+const validQuantity = function(inputQuantity) {
+
+    //Récupération du Paragraphe
+    let error = inputQuantity.nextElementSibling;
+
+    if(inputQuantity.value == "") {
+        error.innerHTML = "Merci de faire votre choix";
+        error.classList.remove('text-sucess');
+        error.classList.add('text-danger');
+        quantity.style.border = 'solid red 0.19rem';
+        return false;
+    }
+    else {
+        error.innerHTML = " Merci";
+        error.classList.remove('text-danger');
+        error.classList.add('text-sucess');
+        quantity.style.border = 'solid green 0.19rem';
+        return true;
+    }
+}
