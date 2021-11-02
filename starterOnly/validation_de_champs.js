@@ -3,7 +3,7 @@ let form = document.querySelector('form');
 //Ecouter la soumission du formulaire
 form.addEventListener('submit', function(e) {
     e.preventDefault();
-    if (validFirst(form.first) && validLast(form.last) && validEmail(form.email) && validBirthdate(form.birthdate)) {
+    if (validFirst(form.first) && validLast(form.last) && validEmail(form.email) && validBirthdate(form.birthdate) && validQuantity(form.quantity)) {
         displayModalSubmit();
         document.querySelector('form').reset();
         };
@@ -33,6 +33,16 @@ form.birthdate.addEventListener('change', function() {
 form.quantity.addEventListener('change', function() {
     validQuantity(this)
 });
+
+
+for (var i=0; i< location.length; i++) {
+    form.location[i].addEventListener('change', function() {
+        validLocation(this)
+    });
+}
+
+
+
 
 // VALIDATION Du Prénom
 const validFirst = function(inputFirst) {
@@ -129,7 +139,6 @@ const validBirthdate = function(inputDate) {
 };
 
 // VALIDATION DU NOMBRE DE TOURNOI PARTICIPÉ
-
 const validQuantity = function(inputQuantity) {
 
     //Récupération du Paragraphe
@@ -149,4 +158,20 @@ const validQuantity = function(inputQuantity) {
         quantity.style.border = 'solid green 0.19rem';
         return true;
     }
-}
+};
+
+const validLocation = function(inputLocation) {
+
+    let error = document.querySelector("#error-location");
+    const formData = document.querySelectorAll(".formData");
+
+   let checkboxCity= false;
+   const checkLocation = formData[5].querySelectorAll(".checkbox-input");
+   checkLocation.forEach(city =>{
+       if (city.checked) {
+            error.innerHTML = "c'est bon";
+            checkboxCity = true;
+           
+       }
+   });
+};
