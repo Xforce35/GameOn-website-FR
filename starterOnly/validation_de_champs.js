@@ -1,6 +1,19 @@
-//VALIDATION DU PRÉNOM
+//VARIABLE GLOBALE
 const firstName = document.getElementById('first');
+const lastName = document.getElementById('last');
+const email = document.getElementById('email');
+const birthdate = document.getElementById('birthdate');
+const quantity = document.getElementById('quantity');
+let form = document.querySelector('form');
 
+// SCENARIO
+firstName.addEventListener('focusout', validateFisrt);
+lastName.addEventListener('focusout',validateLast);
+email.addEventListener('focusout',validateEmail);
+birthdate.addEventListener('change',validateBirthdate);
+quantity.addEventListener('focusout',validateQuantity);
+
+//VALIDATION DU PRÉNOM
 function validateFisrt() {
     //On teste la différence de l'expréssion régulière
     if (!firstName.value.match(/^[A-Za-z-]{2,20}$/)) {
@@ -15,8 +28,6 @@ function validateFisrt() {
 };
 
 //VALIDATION DU NOM
-const lastName = document.getElementById('last');
-
 function validateLast() {
     //On teste la différence de l'expréssion régulière
     if (!lastName.value.match(/^[A-Za-z-]{2,20}$/)) {
@@ -31,8 +42,6 @@ function validateLast() {
 };
 
 //VALIDATION DE L'EMAIL
-const email = document.getElementById('email');
-
 function validateEmail() {
     const EmailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
     if (EmailRegExp.test(email.value)) {
@@ -46,8 +55,6 @@ function validateEmail() {
 };
 
 //VALIDATION DE LA DATE DE NAISSANCE
-const birthdate = document.getElementById('birthdate');
-
 function validateBirthdate() {
     const dtDOB = new Date(birthdate.value);
     const dtCurrent = new Date();
@@ -69,8 +76,6 @@ function validateBirthdate() {
 };
 
 //VALIDATION DU NOMBRE DE TOURNOIS
-const quantity = document.getElementById('quantity');
-
 function validateQuantity() {
     if(quantity.value == "") {
         quantity.parentElement.setAttribute('data-error-visible', 'true');
@@ -86,11 +91,6 @@ function validateQuantity() {
 function sendAllFields(element, method, event) {
     element.addEventListener(event, method);
 }
-sendAllFields ( firstName, validateFisrt, 'focusout');
-sendAllFields (lastName, validateLast, 'focusout');
-sendAllFields (email, validateEmail, 'focusout');
-sendAllFields ( birthdate, validateBirthdate, 'change');
-sendAllFields (quantity, validateQuantity, 'focusout');
 
 
 function forAllFieldsValidation() {
@@ -115,7 +115,7 @@ function allFieldsValide() {
 }
 
 
-let form = document.querySelector('form');
+
 
 //Ecouter la soumission du formulaire
 form.addEventListener('submit', function(e) {
