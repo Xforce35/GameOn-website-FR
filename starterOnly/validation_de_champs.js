@@ -25,17 +25,6 @@ function validateFisrt() {
     return true;
 };
 
-function showError(input)
-{
-    input.parentElement.setAttribute('data-error-visible', 'true');
-    input.style.border = '2px solid #e54858';
-}
-
-function hideError(input)
-{
-    input.parentElement.setAttribute('data-error-visible', 'false');
-    input.style.border = 'solid #279e7a 0.19rem';
-}
 //VALIDATION DU NOM
 function validateLast() {
     //On teste la différence de l'expréssion régulière
@@ -51,6 +40,10 @@ function validateLast() {
 //VALIDATION DE L'EMAIL
 function validateEmail() {
     const EmailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
+    if (email.value =="") {
+        showError(email);
+        return false; 
+    }
     if (EmailRegExp.test(email.value)) {
         showError(email);
         return true;
@@ -82,7 +75,11 @@ function validateQuantity() {
     if(quantity.value == "") {
         showError(quantity);
         return false;
-    }
+        }
+    if(!quantity.value.match(/^[0-9]{1,2}$/)) {
+        showError(quantity);
+        return false;
+        }
     hideError(quantity);
     return true;
 };
@@ -92,7 +89,6 @@ function sendAllFields(element, method, event) {
     element.addEventListener(event, method);
 }
 
-
 function forAllFieldsValidation() {
     validateFisrt()
     validateLast()
@@ -100,7 +96,6 @@ function forAllFieldsValidation() {
     validateBirthdate()
     validateQuantity()
 }
-
 
 //Fonction pour valider tous les champs
 function allFieldsValide() {
@@ -114,9 +109,6 @@ function allFieldsValide() {
     return false;
 }
 
-
-
-
 //Ecouter la soumission du formulaire
 form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -127,3 +119,16 @@ form.addEventListener('submit', function(e) {
             forAllFieldsValidation();
         }
 });
+
+// afficher ou cacher le style et l'erreur de chaque champs
+function showError(input)
+{
+    input.parentElement.setAttribute('data-error-visible', 'true');
+    input.style.border = '2px solid #e54858';
+}
+
+function hideError(input)
+{
+    input.parentElement.setAttribute('data-error-visible', 'false');
+    input.style.border = 'solid #279e7a 0.19rem';
+}
