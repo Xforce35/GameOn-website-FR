@@ -1,17 +1,40 @@
 //VARIABLE GLOBALE
+const form = document.querySelector('form');
 const firstName = document.getElementById('first');
 const lastName = document.getElementById('last');
 const email = document.getElementById('email');
 const birthdate = document.getElementById('birthdate');
 const quantity = document.getElementById('quantity');
-let form = document.querySelector('form');
+const button = document.querySelector('.btn-submit');
 
 // SCENARIO
+disableButton();
 firstName.addEventListener('focusout', validateFisrt);
 lastName.addEventListener('focusout',validateLast);
 email.addEventListener('focusout',validateEmail);
 birthdate.addEventListener('change',validateBirthdate);
 quantity.addEventListener('focusout',validateQuantity);
+
+//Ecouter la soumission du formulaire
+form.addEventListener('change', function(e)
+{
+    if(validateAll())
+    {
+        enableButton();
+    } else {
+        disableButton();
+    }
+});
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (validateAll()) {
+        displayModalSubmit();
+        document.querySelector('form').reset();
+        } else {
+            forAllFieldsValidation();
+        }
+});
 
 //VALIDATION DU PRÉNOM
 function validateFisrt() {
@@ -45,10 +68,10 @@ function validateEmail() {
         return false; 
     }
     if (EmailRegExp.test(email.value)) {
-        showError(email);
+        hideError(email);
         return true;
     }
-   hideError(email);
+   showError(email);
     return false;
 };
 
@@ -84,10 +107,6 @@ function validateQuantity() {
     return true;
 };
 
-//fonction pour 2couter les modifications des élèments html 
-function sendAllFields(element, method, event) {
-    element.addEventListener(event, method);
-}
 
 function forAllFieldsValidation() {
     validateFisrt()
@@ -98,27 +117,16 @@ function forAllFieldsValidation() {
 }
 
 //Fonction pour valider tous les champs
-function allFieldsValide() {
-    if (validateFisrt() === true &&
-        validateLast() === true &&
-        validateEmail() === true &&
-        validateBirthdate() === true &&
-        validateQuantity() === true ){
+function validateAll() {
+    if (validateFisrt() &&
+        validateLast()  &&
+        validateEmail() &&
+        validateBirthdate() &&
+        validateQuantity() ){
         return true;
     }
     return false;
 }
-
-//Ecouter la soumission du formulaire
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    if (allFieldsValide() == true) {
-        displayModalSubmit();
-        document.querySelector('form').reset();
-        } else {
-            forAllFieldsValidation();
-        }
-});
 
 // afficher ou cacher le style et l'erreur de chaque champs
 function showError(input)
@@ -132,3 +140,18 @@ function hideError(input)
     input.parentElement.setAttribute('data-error-visible', 'false');
     input.style.border = 'solid #279e7a 0.19rem';
 }
+
+
+
+function enableButton() {
+    button.setAttribute('disabled',false);
+    button.style.opacity = 1;
+    button.style.cursor = 'pointer';
+}
+
+function disableButton() {
+    button.setAttribute('disabled', true);
+    button.style.opacity = 0.5;
+    button.style.cursor = 'not-allowed'
+}
+
