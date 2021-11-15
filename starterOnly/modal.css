@@ -174,12 +174,12 @@ input {
 }
 .formData[data-error]::after {
   content: attr(data-error);
-  font-size: 0.4em;
-  color: #e54858;
+  font-size: 0.6em;
+  color: #ff4e60;
   display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
-  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  text-align: left;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
@@ -296,6 +296,9 @@ input[data-error]::after {
   color: #fff;
   cursor: pointer;
   border: 0;
+}
+.btn-submit:hover {
+  background: #3876ac;
 }
 /* custom select styles */
 .custom-select {

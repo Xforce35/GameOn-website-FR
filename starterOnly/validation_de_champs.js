@@ -1,11 +1,13 @@
 //VARIABLE GLOBALE
-const form = document.querySelector('form');
-const firstName = document.getElementById('first');
-const lastName = document.getElementById('last');
-const email = document.getElementById('email');
 const birthdate = document.getElementById('birthdate');
-const quantity = document.getElementById('quantity');
 const button = document.querySelector('.btn-submit');
+const cities = document.querySelectorAll('input[name="location"]');
+const email = document.getElementById('email');
+const firstName = document.getElementById('first');
+const form = document.querySelector('form');
+const lastName = document.getElementById('last');
+const polconf = document.getElementById('checkbox1');
+const quantity = document.getElementById('quantity');
 
 // SCENARIO
 disableButton();
@@ -14,6 +16,7 @@ lastName.addEventListener('focusout',validateLast);
 email.addEventListener('focusout',validateEmail);
 birthdate.addEventListener('change',validateBirthdate);
 quantity.addEventListener('focusout',validateQuantity);
+polconf.addEventListener('click', validatePolConf);
 
 //Ecouter la soumission du formulaire
 form.addEventListener('change', function(e)
@@ -28,12 +31,8 @@ form.addEventListener('change', function(e)
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
-    if (validateAll()) {
-        displayModalSubmit();
-        document.querySelector('form').reset();
-        } else {
-            forAllFieldsValidation();
-        }
+    displayModalSubmit();
+    form.reset();
 });
 
 //VALIDATION DU PRÉNOM
@@ -107,13 +106,26 @@ function validateQuantity() {
     return true;
 };
 
+//VALIDATION DE LA VILLE
+let isCytiSelected = false;
+cities.forEach(city =>
+{
+    city.addEventListener('click', function (e)
+    {
+        isCytiSelected = true;
+    })
+});
 
-function forAllFieldsValidation() {
-    validateFisrt()
-    validateLast()
-    validateEmail()
-    validateBirthdate()
-    validateQuantity()
+
+
+//VALIDATION DES CONDITIONS G2N2RALES
+function validatePolConf() {
+if (polconf.checked === false){
+    showError(polconf);
+    return false;
+}
+hideError(polconf);
+return true;
 }
 
 //Fonction pour valider tous les champs
@@ -122,13 +134,15 @@ function validateAll() {
         validateLast()  &&
         validateEmail() &&
         validateBirthdate() &&
-        validateQuantity() ){
+        validateQuantity()
+        && isCytiSelected
+        && validatePolConf() ) {
         return true;
     }
     return false;
 }
 
-// afficher ou cacher le style et l'erreur de chaque champs
+// Fontion pour afficher ou cacher le style et l'erreur de chaque champs
 function showError(input)
 {
     input.parentElement.setAttribute('data-error-visible', 'true');
@@ -142,15 +156,16 @@ function hideError(input)
 }
 
 
-
+// Fonction activer ou desactive ainsi que le style du bouton SUBMIT
 function enableButton() {
-    button.setAttribute('disabled',false);
+    button.removeAttribute('disabled');
     button.style.opacity = 1;
     button.style.cursor = 'pointer';
 }
 
 function disableButton() {
     button.setAttribute('disabled', true);
+    button.style.backgroundColor = "#3876ac";
     button.style.opacity = 0.5;
     button.style.cursor = 'not-allowed'
 }
