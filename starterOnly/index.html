@@ -13,22 +13,22 @@
   </head>
   <body>
      <!--PAGE D'ACCEUIL ""HEADER""-->
-    <div class="topnav" id="myTopnav">
-      <div class="header-logo">
-      <img alt="logo" src="Logo.png" width="auto" height="auto" />
+    
+  <nav class="nav">
+    <div class="nav__logo">
+      <img alt="logo" src="logo.png"/>
     </div>
-    <div class="main-navbar">
-      
-      <a href="#"><span>Accueil</span></a>
-      <a href="#"><span>Détails de l'évènement</span></a>
-      <a href="#"><span>À propos</span></a>
-      <a href="#"><span>Contact</span></a>
-      <a href="#"><span>Évènements passés</span></a>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
-        <i class="fa fa-bars"></i>
-      </a>
+    <a class="nav__burger">
+      <i class="fa fa-bars"></i>
+    </a>
+    <div class="nav__links">
+      <a href="#">Accueil</a>
+      <a href="#">Détails de l'évènement</a>
+      <a href="#">À propos</a>
+      <a href="#">Contact</a>
+      <a href="#">Évènements passés</a>
     </div>
-    </div>
+  </nav>
   </div>
     <main>
       <!--PAGE D'ACCEUIL ""CORPS DE PAGE""-->
@@ -91,7 +91,7 @@
               </div>
               <!--D'ou etes vous-->
               <p class="text-label">Quelles villes ?</p>
-              <div class="formData">
+              <div class="formData" id="allLocations" data-error="merci de choisir une ville dans liste" data-error-visible="false">
                 <input class="checkbox-input" type="radio" id="location1" name="location" value="New York"
                 />
                 <label class="checkbox-label" for="location1">

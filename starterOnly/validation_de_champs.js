@@ -1,4 +1,6 @@
 //VARIABLE GLOBALE
+
+const allLocations = document.getElementById('allLocations');
 const birthdate = document.getElementById('birthdate');
 const button = document.querySelector('.btn-submit');
 const cities = document.querySelectorAll('input[name="location"]');
@@ -17,6 +19,7 @@ email.addEventListener('focusout',validateEmail);
 birthdate.addEventListener('change',validateBirthdate);
 quantity.addEventListener('focusout',validateQuantity);
 polconf.addEventListener('click', validatePolConf);
+allLocations.addEventListener('click', validateCity);
 
 //Ecouter la soumission du formulaire
 form.addEventListener('change', function(e)
@@ -107,16 +110,28 @@ function validateQuantity() {
 };
 
 //VALIDATION DE LA VILLE
-let isCytiSelected = false;
-cities.forEach(city =>
-{
-    city.addEventListener('click', function (e)
-    {
-        isCytiSelected = true;
-    })
-});
+//let isCytiSelected = false;
+//cities.forEach(city =>
+//{
+    //city.addEventListener('click', function (e)
+    //{
+        //isCytiSelected = true;
+        //hideError(cities);
+    //})
+    //showError(cities);
+        //return false;
+//});
 
-
+function validateCity() {
+    allLocations.setAttribute('data-error-visible', 'true');
+    for (let i = 0; i < cities.length; i++) {
+        if (cities[i].checked) {
+            allLocations.setAttribute('data-error-visible', 'false');
+            return true;
+        }
+    }
+    return false;
+}
 
 //VALIDATION DES CONDITIONS G2N2RALES
 function validatePolConf() {
@@ -134,9 +149,9 @@ function validateAll() {
         validateLast()  &&
         validateEmail() &&
         validateBirthdate() &&
-        validateQuantity()
-        && isCytiSelected
-        && validatePolConf() ) {
+        validateQuantity()&&
+        validateCity()&&
+        validatePolConf() ) {
         return true;
     }
     return false;
