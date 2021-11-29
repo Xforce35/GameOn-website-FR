@@ -25,10 +25,6 @@ p {
   padding: 0.5vw;
 }
 
-img {
-  padding-right: 1rem;
-}
-
 /**/
 .nav {
   display: grid;
@@ -40,11 +36,6 @@ img {
 .nav__logo {
   display: flex;
   align-items: center;
-}
-
-.nav__logo img {
-  width: clamp(125px, 20vw, 250px);
-  height: auto;
 }
 
 .nav__links {
@@ -622,6 +613,10 @@ footer {
 }
 
 @media screen and (max-width: 320px) {
+  .nav__logo img {
+    max-width: 150px;
+    height: auto;
+  }
   .main {
     padding: 0;
   }
