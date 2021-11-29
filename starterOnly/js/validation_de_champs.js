@@ -151,7 +151,7 @@ function validateAll() {
         validateBirthdate() &&
         validateQuantity()&&
         validateCity()&&
-        validatePolConf() ) {
+        validategenCondUse() ) {
         return true;
     }
     return false;
