@@ -10,8 +10,6 @@ Ce projet s'inscrit dans le cadre de la formation "Développeur Front-End" propo
 
 ## Consignes
 
-- Mettre en œuvre des effets CSS graphiques avancés
-
 - Assurer la cohérence graphique d'un site web avec les maquettes
 
 - Mettre en place une structure de navigation pour un site web
