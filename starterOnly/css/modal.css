@@ -162,12 +162,13 @@ input {
   font-size: 0.5em;
   color: #e54858;
   display: block;
-  margin-top: 7px;
-  margin-bottom: 7px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
   text-align: left;
   line-height: 0.3;
   opacity: 0;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 .formData[data-error-visible="true"]::after {
   opacity: 1;

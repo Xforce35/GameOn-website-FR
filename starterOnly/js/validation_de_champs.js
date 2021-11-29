@@ -8,7 +8,7 @@ const email = document.getElementById('email');
 const firstName = document.getElementById('first');
 const form = document.querySelector('form');
 const lastName = document.getElementById('last');
-const polconf = document.getElementById('checkbox1');
+const genCondUse = document.getElementById('checkbox1');
 const quantity = document.getElementById('quantity');
 
 // SCENARIO
@@ -16,9 +16,9 @@ disableButton();
 firstName.addEventListener('focusout', validateFisrt);
 lastName.addEventListener('focusout',validateLast);
 email.addEventListener('focusout',validateEmail);
-birthdate.addEventListener('change',validateBirthdate);
+birthdate.addEventListener('focusout',validateBirthdate);
 quantity.addEventListener('focusout',validateQuantity);
-polconf.addEventListener('click', validatePolConf);
+genCondUse.addEventListener('click', validategenCondUse);
 allLocations.addEventListener('click', validateCity);
 
 //Ecouter la soumission du formulaire
@@ -41,7 +41,7 @@ form.addEventListener('submit', function(e) {
 //VALIDATION DU PRÉNOM
 function validateFisrt() {
     //On teste la différence de l'expréssion régulière
-    if (!firstName.value.match(/^[A-Za-z-]{2,20}$/)) {
+    if (!firstName.value.match(/^[A-Za-z- ]{2,20}$/)) {
         //récupération du message d'erreur et le rendre visible, ainsi que son style
         showError(firstName);
         return false;
@@ -53,7 +53,7 @@ function validateFisrt() {
 //VALIDATION DU NOM
 function validateLast() {
     //On teste la différence de l'expréssion régulière
-    if (!lastName.value.match(/^[A-Za-z-]{2,20}$/)) {
+    if (!lastName.value.match(/^[A-Za-z- ]{2,20}$/)) {
         //récupération du message d'erreur et le rendre visible, ainsi que son style
         showError(lastName);
         return false;
@@ -64,7 +64,7 @@ function validateLast() {
 
 //VALIDATION DE L'EMAIL
 function validateEmail() {
-    const EmailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
+    const EmailRegExp = new RegExp('^[a-zA-Z0-9._-]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
     if (email.value =="") {
         showError(email);
         return false; 
@@ -82,7 +82,7 @@ function validateBirthdate() {
     const dtDOB = new Date(birthdate.value);
     const dtCurrent = new Date();
     
-    if (birthdate.value =="") {
+    if (birthdate.value.trim().length !== 10) {
         showError(birthdate);
         return false; 
     }
@@ -134,12 +134,12 @@ function validateCity() {
 }
 
 //VALIDATION DES CONDITIONS G2N2RALES
-function validatePolConf() {
-if (polconf.checked === false){
-    showError(polconf);
+function validategenCondUse() {
+if (genCondUse.checked === false){
+    showError(genCondUse);
     return false;
 }
-hideError(polconf);
+hideError(genCondUse);
 return true;
 }
 
