@@ -28,7 +28,7 @@ p {
 .nav {
   display: grid;
   grid-template-columns: 1fr auto;
-  margin: 20px 20px 50px;
+  margin: 40px 20px 50px;
   padding: 0px 25px;
 }
 
@@ -367,7 +367,7 @@ input[data-error]::after {
   grid-template-columns: repeat(12, 1fr);
   overflow: hidden;
   margin: 5px 20px 5px;
-  padding: 0px 25px;
+  padding: 15px 25px;
 }
 .hero-content {
   padding: 51px 67px;
@@ -377,7 +377,7 @@ input[data-error]::after {
   position: relative;
   text-align: left;
   min-width: 424px;
-  box-shadow: 0 2px 7px 2px rgb(0 0 0 / 20%);
+  box-shadow: 0px 8px 8px 2px rgb(0 0 0 / 30%);
   border-radius: 10px;
 }
 .hero-content::after {
@@ -421,14 +421,14 @@ input[data-error]::after {
   height: 100%;
   display: block;
   padding: 0;
-  box-shadow: 0 2px 7px 2px rgb(0 0 0 / 20%);
+  box-shadow: 0px 8px 8px 2px rgb(0 0 0 / 30%);
   border-radius: 10px;
 }
 .copyrights {
   color: #fe142f;
   padding: 0;
   font-size: 1rem;
-  margin: 50px 0 0;
+  margin: 30px 0 10px;
   font-weight: bolder;
 }
 .hero-section > .btn-signup {
