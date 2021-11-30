@@ -136,7 +136,7 @@ function validateCity() {
     return false;
 }
 
-//VALIDATION DES CONDITIONS G2N2RALES
+//VALIDATION DES CONDITIONS GÉNÉRALES
 function validategenCondUse() {
 //Ici, on vérifie que la case des conditions générales d'utulisation soit soit coché donc checké, ce qui retourne vrai
 if (genCondUse.checked === false){
