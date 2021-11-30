@@ -179,6 +179,7 @@ function hideError(input)
 // Fonction activer ou desactive ainsi que le style du bouton SUBMIT
 function enableButton() {
     button.removeAttribute('disabled');
+    button.style.backgroundColor = '#e54858';
     button.style.opacity = 1;
     button.style.cursor = 'pointer';
 }
